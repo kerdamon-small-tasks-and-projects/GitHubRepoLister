@@ -1,6 +1,5 @@
-from flask import Blueprint, request, jsonify
+from flask import Blueprint
 from services import get_user_repos, get_sum_of_stars_for_user_repos
-
 
 rep = Blueprint('api', __name__, url_prefix='/api')
 
