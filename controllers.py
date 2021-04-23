@@ -12,3 +12,7 @@ def list_user_repos(username):
 
     return repos
 
+@rep.route('/starSum/<username>')
+def list_sum_of_stars_for_user_repos(username):
+    repos = list_user_repos(username)
+    return {'sum': sum(repos.values())}
