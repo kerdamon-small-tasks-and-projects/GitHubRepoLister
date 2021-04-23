@@ -1,18 +1,13 @@
 from flask import Blueprint, request, jsonify
-import requests
+from services import get_user_repos, get_sum_of_stars_for_user_repos
+
 
 rep = Blueprint('api', __name__, url_prefix='/api')
 
 @rep.route('/repos/<username>')
 def list_user_repos(username):
-    repos_info = requests.get(f'https://api.github.com/users/{username}/repos').json()
-    repos = {}
-    for repo_info in repos_info:
-        repos[repo_info['name']] = repo_info['stargazers_count']
-
-    return repos
+    return get_user_repos(username)
 
 @rep.route('/starSum/<username>')
 def list_sum_of_stars_for_user_repos(username):
-    repos = list_user_repos(username)
-    return {'sum': sum(repos.values())}
+    return {'sum': get_sum_of_stars_for_user_repos(username)}
