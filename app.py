@@ -9,3 +9,7 @@ app.register_blueprint(api)
 
 if __name__ == '__main__':
     app.run()
+
+@app.route('/')
+def hello():
+    return {'message': 'Current endpoints: api/repos/<username> and api/stars_sum/<username>'}
